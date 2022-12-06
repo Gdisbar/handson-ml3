@@ -1,0 +1,24 @@
+sudo rm -r /var/lib/mysql/
+sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+sudo systemctl start mysqld
+sudo systemctl start mysql.service
+sudo systemctl start mariadb.service -> starting only mysql will do
+sudo systemctl status mariadb.service
+sudo mysql_secure_installation
+sudo mysql
+MariaDB [(none)]> create user 'your_user_name'@'localhost' identified by 'your_password';
+MariaDB [(none)]> grant all privileges on*.* to 'your_user_name'@'localhost' with grant option;
+MariaDB [(none)]> flush privileges;
+MariaDB [(none)]> exit
+-----------------------------
+mysql -u your_user_name -p
+----------------------------
+sudo pacman -S mysql-workbench
+mysql-workbench
+Connection Method : “Local Socket/Pipe” -> Give name to the connection
+Socket/Pipe Path : “/var/run/mysqld/mysqld.sock“. 
+manually path exist in -> “/var/run/mysqld/mysqld.sock”
+-----------------------------------------------------------------
+#tells on which port mysql running
+
+MariaDB [(none)]>SHOW GLOBAL VARIABLES LIKE 'PORT'; 
